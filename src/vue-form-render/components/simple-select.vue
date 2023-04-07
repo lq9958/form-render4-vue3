@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="value" v-bind="schema.props">
+  <el-select v-model="value" v-bind="schema.props||{}">
     <el-option
       v-for="(item, index) in schema.data.list"
       :key="index"
@@ -16,13 +16,12 @@ export default defineComponent({
   // name: "simple-select",
   props: {
     schema: Object,
-    formData: Object
   },
   setup(props, { emit }) {
     const { schema } = props
     const value = ref(schema.value)
     watch(value, () => {
-      emit('onChange', { field: schema.field, value: value.value })
+      emit('on-change', { field: schema.field, value: value.value })
     })
     return {
       schema,

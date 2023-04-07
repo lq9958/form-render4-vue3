@@ -1,5 +1,5 @@
 <template>
-  <el-input-number v-model="value" v-bind="schema.props"></el-input-number>
+  <el-input-number v-model="value" v-bind="schema.props||{}"></el-input-number>
 </template>
 
 <script>
@@ -9,13 +9,12 @@ export default defineComponent({
   //   name: "number-input",
   props: {
     schema: Object,
-    formData: Object
   },
   setup(props, { emit }) {
     const { schema } = props
     const value = ref(schema.value)
     watch(value, () => {
-      emit('onChange', { field: schema.field, value: value.value })
+      emit('on-change', { field: schema.field, value: value.value })
     })
     return {
       schema,

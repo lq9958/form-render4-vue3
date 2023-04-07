@@ -1,5 +1,5 @@
 <template>
-  <el-checkbox-group v-model="value" v-bind="schema.props">
+  <el-checkbox-group v-model="value" v-bind="schema.prop||{}">
     <el-checkbox
       v-for="(item, index) in schema.data.list"
       :key="index"
@@ -20,7 +20,7 @@ export default defineComponent({
     const { schema } = props
     const value = ref(schema.value)
     watch(value, () => {
-      emit('onChange', { field: schema.field, value: value.value })
+      emit('on-change', { field: schema.field, value: value.value })
     })
     return {
       schema,

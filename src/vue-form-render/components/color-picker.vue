@@ -1,5 +1,5 @@
 <template>
-  <el-color-picker v-model="value" v-bind="schema.props"></el-color-picker>
+  <el-color-picker v-model="value" v-bind="schema.props||{}"></el-color-picker>
 </template>
 
 <script>
@@ -8,14 +8,13 @@ import { defineComponent, ref, watch } from 'vue'
 export default defineComponent({
   //   name: "color-picker",
   props: {
-    schema: Object,
-    formData: Object
+    schema: Object
   },
   setup(props, { emit }) {
     const { schema } = props
     const value = ref(schema.value)
     watch(value, () => {
-      emit('onChange', { field: schema.field, value: value.value })
+      emit('on-change', { field: schema.field, value: value.value })
     })
     return {
       schema,

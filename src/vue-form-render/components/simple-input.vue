@@ -1,5 +1,7 @@
 <template>
-  <el-input v-model="value" v-bind="schema.props"></el-input>
+  <div class="form-render-input">
+    <el-input v-model="value"  v-bind="schema.props||{}"></el-input>
+  </div>
 </template>
 
 <script>
@@ -8,20 +10,28 @@ import { defineComponent, ref, watch } from 'vue'
 export default defineComponent({
   props: {
     schema: Object,
-    formData: Object,
-    onChange: Function,
+    formData: Object
   },
   setup(props, { emit }) {
-    const { schema } = props
-    const value = ref(schema.value)
+    const schema = props.schema
+    const formData = props.formData
+    const value = ref(formData[schema.field])
     watch(value, () => {
-      emit('onChange', { field: schema.field, value: value.value })
+      emit('on-change', { field: schema.field, value: value })
     })
 
     return {
       schema,
-      value,
+      formData,
+      value
     }
-  },
+  }
 })
 </script>
+
+
+<style scoped>
+.form-render-input {
+  width: 100%;
+}
+</style>

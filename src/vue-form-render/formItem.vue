@@ -1,9 +1,13 @@
 <template>
-  <el-form-item :label="schema.title" :prop="schema.field">
+  <el-form-item
+    :label="schema.title"
+    :prop="schema.field"
+    :label-width="schema.labelWidth || ''"
+  >
     <component
       :is="ElementTypeMapping[schema.type]"
       :schema="schema"
-      :value="value"
+      :formData="formData"
       @on-change="handleChange"
     ></component>
   </el-form-item>
@@ -17,20 +21,23 @@ export default defineComponent({
   name: 'FormItem',
   props: {
     schema: Object,
+    formData: Object
   },
   setup(props, { emit }) {
     const schema = props.schema
+    const formData = props.schema
     const value = ref(schema.value)
-    const handleChange = (data) => {
-      emit('onChange', data)
+    const handleChange = data => {
+      emit('on-change', data)
     }
     return {
       schema,
+      formData,
       ElementTypeMapping,
       value,
-      handleChange,
+      handleChange
     }
-  },
+  }
 })
 </script>
 

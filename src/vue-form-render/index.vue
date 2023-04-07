@@ -1,17 +1,14 @@
 <template>
   <div class="vue-form-render">
-    <el-form :model="formData" :schema="schema">
+    <el-form
+      :model="formModal"
+      :schema="schema"
+      :label-width="schema.labelWidth|| 'auto'"
+      :rules="schema.rules || {}"
+    >
       <el-row>
-        <el-col
-          :span="span(schema.column)"
-          v-for="(item, index) in schema.fields"
-          :key="index"
-        >
-          <form-item
-            :schema="item"
-            :form-data="formData"
-            @on-change="handleChange"
-          ></form-item>
+        <el-col :span="span(schema.column)" v-for="(item, index) in schema.fields" :key="index">
+          <form-item :schema="item" :form-data="formData" @on-change="handleChange"></form-item>
         </el-col>
       </el-row>
     </el-form>
@@ -19,39 +16,39 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import FormItem from './formItem.vue'
 
 export default defineComponent({
   name: 'VueFormRender',
   components: {
-    FormItem,
+    FormItem
   },
   props: {
     formData: Object,
-    schema: Object,
-    onChange: Function,
+    schema: Object
   },
-  emits: ['onChange'],
   setup(props, { emit }) {
-    const {schema,formData} = props
-    const span = (column) => {
+    const schema = props.schema
+    const formModal = reactive(JSON.parse(JSON.stringify(props.formData)))
+    
+    const span = column => {
       return column ? 24 / column : 24
     }
 
-    const handleChange = (data) => {
+    const handleChange = data => {
       console.log(data)
-      formData[data['field']] = data['value']
-      emit('onChange', formData)
+      formModal[data['field']] = data['value']
+      emit('on-change', formModal)
     }
 
     return {
       schema,
-      formData,
+      formModal,
       span,
-      handleChange,
+      handleChange
     }
-  },
+  }
 })
 </script>
 

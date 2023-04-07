@@ -4,7 +4,7 @@ import { reactive, ref } from 'vue'
 
 const state = reactive({
   formData: {
-    name: 'name1',
+    name: 'jey',
     age: 1,
     color: '#fff',
     slider: 0
@@ -14,12 +14,6 @@ const state = reactive({
 const schema = reactive({
   fields: [
     {
-      type: 'input',
-      title: 'name',
-      field: 'name',
-      value: 'jey'
-    },
-    {
       type: 'number',
       title: 'age',
       field: 'age',
@@ -28,44 +22,81 @@ const schema = reactive({
         min: 1,
         max: 10,
         step: 2
-      }
+      },
+      labelWidth: 0
+    },
+    {
+      type: 'input',
+      title: 'name',
+      field: 'name',
+      value: '',
+      props: {}
     },
     {
       type: 'color',
       title: 'color',
       field: 'color',
-      value: '#fff'
+      value: '#fff',
+      props: {}
     },
     {
       type: 'slider',
       title: 'slider',
       field: 'slider',
-      value: 1
+      value: 1,
+      props: {}
+    },
+    {
+      type: 'select',
+      title: 'select',
+      field: 'like',
+      value: '',
+      data: {
+        list: [
+          {
+            label: '唱',
+            value: 'song'
+          },
+          {
+            label: '跳',
+            value: 'dance'
+          },
+          {
+            label: 'rap',
+            value: 'rap'
+          },
+          {
+            label: '篮球',
+            value: 'basketball'
+          }
+        ],
+        label: 'label',
+        value: 'value',
+      }
     }
-  ]
-  // column: 4
+  ],
+  rules:{
+    name:[{required:true,message:'名字必填'}]
+  },
+  labelWidth:150
 })
 
-const handleChange = data => {  
+const handleChange = data => {
   state.formData = data
 }
+
+const name = ref('')
 </script>
 
 <template>
-  <FormRender :schema="schema" :form-data="state.formData" @on-change="handleChange" />
+  <div class="form-render">
+    <FormRender :schema="schema" :form-data="state.formData" @on-change="handleChange" />
+  </div>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.form-render {
+  width: 500px;
+  border: 1px solid #ccc;
 }
 </style>
