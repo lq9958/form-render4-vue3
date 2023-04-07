@@ -1,8 +1,9 @@
 <script setup>
 import FormRender from './vue-form-render/index.vue'
-import { reactive, ref } from 'vue'
+import { reactive, ref, watch, defineAsyncComponent } from 'vue'
+import { mergeSchema } from './vue-form-render/utils'
 
-const state = reactive({
+const form = reactive({
   formData: {
     name: 'jey',
     age: 1,
@@ -11,7 +12,11 @@ const state = reactive({
   }
 })
 
-const schema = reactive({
+watch(form.formData, () => {
+  console.log('formData has changed')
+})
+
+const userschema = {
   fields: [
     {
       type: 'number',
@@ -29,22 +34,19 @@ const schema = reactive({
       type: 'input',
       title: 'name',
       field: 'name',
-      value: '',
-      props: {}
+      value: ''
     },
     {
       type: 'color',
       title: 'color',
       field: 'color',
-      value: '#fff',
-      props: {}
+      value: '#fff'
     },
     {
       type: 'slider',
       title: 'slider',
       field: 'slider',
-      value: 1,
-      props: {}
+      value: 1
     },
     {
       type: 'select',
@@ -71,26 +73,25 @@ const schema = reactive({
           }
         ],
         label: 'label',
-        value: 'value',
+        value: 'value'
       }
     }
   ],
-  rules:{
-    name:[{required:true,message:'名字必填'}]
-  },
-  labelWidth:150
-})
+  rules: {
+    name: [{ required: true, message: '名字必填' }]
+  }
+}
+const schema = reactive(mergeSchema(userschema))
 
 const handleChange = data => {
-  state.formData = data
+  form.formData = data
 }
 
-const name = ref('')
 </script>
 
 <template>
   <div class="form-render">
-    <FormRender :schema="schema" :form-data="state.formData" @on-change="handleChange" />
+    <FormRender :schema="schema" :form-data="form.formData" @on-change="handleChange" />
   </div>
 </template>
 

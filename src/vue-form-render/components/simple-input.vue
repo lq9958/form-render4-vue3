@@ -17,7 +17,7 @@ export default defineComponent({
     const formData = props.formData
     const value = ref(formData[schema.field])
     watch(value, () => {
-      emit('on-change', { field: schema.field, value: value })
+      emit('on-change', { field: schema.field, value: value.value })
     })
 
     return {

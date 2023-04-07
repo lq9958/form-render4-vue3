@@ -3,8 +3,13 @@
     <el-form
       :model="formModal"
       :schema="schema"
-      :label-width="schema.labelWidth|| 'auto'"
-      :rules="schema.rules || {}"
+      :label-width="schema.labelWidth"
+      :rules="schema.rules"
+      :label-position="schema.labelPosition"
+      :hide-required-asterisk="schema.hideRequiredAsterisk "
+      :require-asterisk-position="schema.requireAsteriskPosition"
+      :show-message="schema.showMessage"
+      :scroll-to-error="schema.scrollToError"
     >
       <el-row>
         <el-col :span="span(schema.column)" v-for="(item, index) in schema.fields" :key="index">
@@ -30,15 +35,14 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const schema = props.schema
-    const formModal = reactive(JSON.parse(JSON.stringify(props.formData)))
-    
+    const formModal = reactive(props.formData)
+
     const span = column => {
       return column ? 24 / column : 24
     }
 
     const handleChange = data => {
-      console.log(data)
-      formModal[data['field']] = data['value']
+      formModal[`${data['field']}`] = data['value']
       emit('on-change', formModal)
     }
 

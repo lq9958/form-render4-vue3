@@ -1,15 +1,36 @@
-import {
-  defineAsyncComponent
-} from 'vue'
-
 export const ElementTypeMapping = {
-  select: defineAsyncComponent(() => import('../components/simple-select.vue')),
-  radio: defineAsyncComponent(() => import('../components/rate.vue')),
-  checkbox: defineAsyncComponent(() => import('../components/checkbox.vue')),
-  input: defineAsyncComponent(() => import('../components/simple-input.vue')),
-  number: defineAsyncComponent(() => import('../components/number-input.vue')),
-  rate: defineAsyncComponent(() => import('../components/rate.vue')),
-  slider: defineAsyncComponent(() => import('../components/slider.vue')),
-  color: defineAsyncComponent(() => import('../components/color-picker.vue')),
-  switch: defineAsyncComponent(() => import('../components/switch.vue')),
+  select: 'simple-select',
+  radio: 'radio',
+  checkbox: 'checkbox',
+  input: 'simple-input',
+  number: 'number-input',
+  rate: 'rate',
+  slider: 'slider',
+  color: 'color-picker',
+  switch: 'switch',
+}
+
+
+const BASE_SCHEMA = {
+  fields: [],
+  rules: [],
+  labelWidth: 'auto',
+  labelPosition: 'right',
+  hideRequiredAsterisk: 'left',
+  showMessage: true,
+  disabled: false
+}
+
+const BASE_FIELD_SCHEMA = {
+  props: {}
+}
+
+export function mergeSchema(userSchema) {
+  userSchema = Object.assign({}, BASE_SCHEMA, userSchema)
+  if (userSchema.fields.length) {
+    userSchema.fields = userSchema.fields.map(schema => {
+      return Object.assign({}, BASE_FIELD_SCHEMA, schema)
+    })
+  }
+  return userSchema
 }
