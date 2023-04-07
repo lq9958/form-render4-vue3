@@ -20,40 +20,26 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, reactive } from 'vue'
+<script setup>
+import { defineComponent, reactive, defineProps, defineEmits } from 'vue'
 import FormItem from './formItem.vue'
 
-export default defineComponent({
-  name: 'VueFormRender',
-  components: {
-    FormItem
-  },
-  props: {
-    formData: Object,
-    schema: Object
-  },
-  setup(props, { emit }) {
-    const schema = props.schema
-    const formModal = reactive(props.formData)
-
-    const span = column => {
-      return column ? 24 / column : 24
-    }
-
-    const handleChange = data => {
-      formModal[`${data['field']}`] = data['value']
-      emit('on-change', formModal)
-    }
-
-    return {
-      schema,
-      formModal,
-      span,
-      handleChange
-    }
-  }
+const props = defineProps({
+  formData: Object,
+  schema: Object
 })
+
+const emit = defineEmits()
+
+const schema = props.schema
+const formModal = reactive(props.formData)
+const span = column => {
+  return column ? 24 / column : 24
+}
+const handleChange = data => {
+  formModal[`${data['field']}`] = data['value']
+  emit('on-change', formModal)
+}
 </script>
 
 <style>
