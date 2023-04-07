@@ -4,8 +4,7 @@
       v-for="(item, index) in schema.data.list"
       :key="index"
       :label="item[schema.data.label]"
-      >{{ item[schema.data.label] }}</el-radio
-    >
+    >{{ item[schema.data.label] }}</el-radio>
   </el-radio-group>
 </template>
 
@@ -15,9 +14,9 @@ import { defineComponent, ref, watch } from 'vue'
 export default defineComponent({
   props: {
     schema: Object,
-    formData: Object,
+    formData: Object
   },
-  setup(props) {
+  setup(props, { emit }) {
     const { schema } = props
     const value = ref(schema.value)
     watch(value, () => {
@@ -25,8 +24,8 @@ export default defineComponent({
     })
     return {
       schema,
-      value,
+      value
     }
-  },
+  }
 })
 </script>

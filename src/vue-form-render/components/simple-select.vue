@@ -16,9 +16,9 @@ export default defineComponent({
   // name: "simple-select",
   props: {
     schema: Object,
-    formData: Object,
+    formData: Object
   },
-  setup(props) {
+  setup(props, { emit }) {
     const { schema } = props
     const value = ref(schema.value)
     watch(value, () => {
@@ -26,8 +26,8 @@ export default defineComponent({
     })
     return {
       schema,
-      value,
+      value
     }
-  },
+  }
 })
 </script>

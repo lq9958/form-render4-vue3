@@ -10,7 +10,7 @@
           <form-item
             :schema="item"
             :form-data="formData"
-            @onChange="handleChange"
+            @on-change="handleChange"
           ></form-item>
         </el-col>
       </el-row>
@@ -34,14 +34,15 @@ export default defineComponent({
   },
   emits: ['onChange'],
   setup(props, { emit }) {
-    const schema = props.schema
-    const formData = props.formData
+    const {schema,formData} = props
     const span = (column) => {
       return column ? 24 / column : 24
     }
 
     const handleChange = (data) => {
-      emit('onChange', data)
+      console.log(data)
+      formData[data['field']] = data['value']
+      emit('onChange', formData)
     }
 
     return {

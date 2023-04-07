@@ -2,11 +2,13 @@
 import FormRender from './vue-form-render/index.vue'
 import { reactive, ref } from 'vue'
 
-const formData = reactive({
-  name: 'name1',
-  age: 1,
-  color: '#fff',
-  slider: 0,
+const state = reactive({
+  formData: {
+    name: 'name1',
+    age: 1,
+    color: '#fff',
+    slider: 0
+  }
 })
 
 const schema = reactive({
@@ -15,7 +17,7 @@ const schema = reactive({
       type: 'input',
       title: 'name',
       field: 'name',
-      value: 'jey',
+      value: 'jey'
     },
     {
       type: 'number',
@@ -25,36 +27,32 @@ const schema = reactive({
       props: {
         min: 1,
         max: 10,
-        step: 2,
-      },
+        step: 2
+      }
     },
     {
       type: 'color',
       title: 'color',
       field: 'color',
-      value: '#fff',
+      value: '#fff'
     },
     {
       type: 'slider',
       title: 'slider',
       field: 'slider',
-      value: 1,
-    },
-  ],
+      value: 1
+    }
+  ]
   // column: 4
 })
 
-const handleChange = (data) => {
-  formData[data['field']] = data['value']
+const handleChange = data => {  
+  state.formData = data
 }
 </script>
 
 <template>
-  <FormRender
-    :schema="schema"
-    :form-data="formData"
-    @on-change="handleChange"
-  />
+  <FormRender :schema="schema" :form-data="state.formData" @on-change="handleChange" />
 </template>
 
 <style scoped>
