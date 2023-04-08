@@ -3,16 +3,16 @@
 </template>
 
 <script setup>
-import { ref, watch, defineEmits } from 'vue'
+import { ref, watch } from 'vue'
 
 const props = defineProps({
   schema: Object,
-  formData: Object
+  formData: Object,
 })
 const emit = defineEmits()
 
-const { schema } = props
-const value = ref(schema.value)
+const { schema, formData } = props
+const value = ref(formData[schema.field])
 watch(value, () => {
   emit('onChange', { field: schema.field, value: value.value })
 })

@@ -1,10 +1,20 @@
 <template>
-  <el-form-item :label="schema.title" :prop="schema.field" :label-width="schema.labelWidth">
+  <el-form-item
+    :label="schema.title"
+    :prop="schema.field"
+    :label-width="schema.labelWidth"
+  >
     <Suspense>
       <template #default>
-        <AsyncField :schema="schema" :formData="formData" @on-change="handleChange" />
+        <AsyncField :schema="schema" :form-data="formData" @on-change="handleChange" />
       </template>
     </Suspense>
+    <!-- <component
+      :is="AsyncField"
+      :schema="schema"
+      :form-data="formData"
+      @on-change="handleChange"
+    ></component> -->
   </el-form-item>
 </template>
 
@@ -14,14 +24,12 @@ import { ElementTypeMapping } from './utils/index'
 
 const props = defineProps({
   schema: Object,
-  formData: Object
+  formData: Object,
 })
 
 const emit = defineEmits()
-const schema = props.schema
-const formData = props.schema 
-const value = ref(schema.value)
-const handleChange = data => {
+const { schema, formData } = props
+const handleChange = (data) => {
   emit('on-change', data)
 }
 const AsyncField = defineAsyncComponent(() =>

@@ -4,22 +4,22 @@
       v-for="(item, index) in schema.data.list"
       :key="index"
       :label="item[schema.data.label]"
-    >{{ item[schema.data.label] }}</el-radio>
+      >{{ item[schema.data.label] }}</el-radio
+    >
   </el-radio-group>
 </template>
 
 <script setup>
-import { ref, watch, defineProps, defineEmits } from 'vue'
+import { ref, watch } from 'vue'
 
 const props = defineProps({
   schema: Object,
-  formData: Object
+  formData: Object,
 })
-
 const emit = defineEmits()
 
-const { schema } = props
-const value = ref(schema.value)
+const { schema, formData } = props
+const value = ref(formData[schema.field])
 watch(value, () => {
   emit('onChange', { field: schema.field, value: value.value })
 })

@@ -16,13 +16,16 @@ const BASE_SCHEMA = {
   rules: [],
   labelWidth: 'auto',
   labelPosition: 'right',
-  hideRequiredAsterisk: 'left',
+  hideRequiredAsterisk: false,
+  requireAsteriskPosition: 'left',
   showMessage: true,
   disabled: false
 }
 
 const BASE_FIELD_SCHEMA = {
-  props: {}
+  props: {
+    labelWidth: 'auto'
+  }
 }
 
 export function mergeSchema(userSchema) {
