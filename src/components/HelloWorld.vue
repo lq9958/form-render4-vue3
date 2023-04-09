@@ -5,6 +5,8 @@ defineProps({
   msg: String,
 })
 
+const test = () => {}
+
 const count = ref(0)
 </script>
 

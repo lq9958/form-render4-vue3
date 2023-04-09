@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { ref, watch, defineProps, defineEmits } from 'vue'
+import { ref, watch, defineProps } from 'vue'
 
 const props = defineProps({
   schema: Object,

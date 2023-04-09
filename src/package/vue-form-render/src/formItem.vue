@@ -19,8 +19,8 @@
 </template>
 
 <script setup>
-import { ref, defineAsyncComponent } from 'vue'
-import { ElementTypeMapping } from './utils/index'
+import { defineAsyncComponent } from 'vue'
+import { ElementTypeMapping } from './utils'
 
 const props = defineProps({
   schema: Object,
