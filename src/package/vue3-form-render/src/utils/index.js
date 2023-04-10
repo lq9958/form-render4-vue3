@@ -22,13 +22,17 @@ const BASE_SCHEMA = {
   disabled: false
 }
 
+/**
+ * form-item 必须有 type、 title、field 这三个属性
+ */
 const BASE_FIELD_SCHEMA = {
+  value:'',
   props: {
     labelWidth: 'auto'
   }
 }
 
-export function mergeSchema(userSchema)/* @__PURE__ */ {
+export function mergeSchema(userSchema) {
   userSchema = Object.assign({}, BASE_SCHEMA, userSchema)
   if (userSchema.fields.length) {
     userSchema.fields = userSchema.fields.map(schema => {
