@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-form-render" >
+  <div class="vue-form-render">
     <el-form
       ref="formInstance"
       :model="formModal"
@@ -13,16 +13,8 @@
       :scroll-to-error="schema.scrollToError"
     >
       <el-row>
-        <el-col
-          :span="span(schema.column)"
-          v-for="(item, index) in schema.fields"
-          :key="index"
-        >
-          <form-item
-            :schema="item"
-            :form-data="formModal"
-            @on-change="handleChange"
-          ></form-item>
+        <el-col :span="span(schema.column)" v-for="(item, index) in schema.fields" :key="index">
+          <form-item :schema="item" :form-data="formModal" @on-change="handleChange"></form-item>
         </el-col>
       </el-row>
     </el-form>
@@ -30,19 +22,20 @@
 </template>
 
 <script setup>
-import { nextTick, reactive, ref,watch } from 'vue'
+import { nextTick, reactive, ref, watch } from 'vue'
+import * as Utils from './utils'
 import FormItem from './formItem.vue'
 
 const props = defineProps({
   schema: Object,
   modal: Object,
-  onChange: Function,
+  onChange: Function
 })
 
 const schema = props.schema
-const formModal = props.modal
+const formModal = reactive(Utils.mergeSchema({ ...props.modal }))
 const change = props.onChange
-const span = (column) => {
+const span = column => {
   return column ? 24 / column : 24
 }
 
@@ -52,7 +45,7 @@ const handleChange = async ({ field, value }) => {
 }
 
 const formInstance = ref(null)
-const validate = async (callback) => {
+const validate = async callback => {
   if (!formInstance) return
   await formInstance.value.validate((isValid, errorField) => {
     callback(isValid, errorField)

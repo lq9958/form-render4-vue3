@@ -28,7 +28,7 @@ const BASE_FIELD_SCHEMA = {
   }
 }
 
-export function mergeSchema(userSchema) {
+export function mergeSchema(userSchema)/* @__PURE__ */ {
   userSchema = Object.assign({}, BASE_SCHEMA, userSchema)
   if (userSchema.fields.length) {
     userSchema.fields = userSchema.fields.map(schema => {
