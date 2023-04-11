@@ -1,12 +1,12 @@
 <template>
   <div class="simple-form">
     <div class="form-container">
-      <vue-form-render
+      <form-render4-vue3
         v-if="showForm"
         :schema="schema"
         :form-data="formData"
         :on-change="handleFormDataChange"
-      ></vue-form-render>
+      ></form-render4-vue3>
       <el-text v-else class="mx-1" type="danger">JSON 格式有误</el-text>
       <div class="form-data">表单数据：{{ formData }}</div>
     </div>

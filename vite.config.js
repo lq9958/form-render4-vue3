@@ -14,8 +14,8 @@ export default defineConfig({
   build: {
     outDir: 'lib',
     lib: {
-      entry: path.resolve(__dirname, './package/vue3-form-render/index.js'),
-      name: 'vue3-form-render',
+      entry: path.resolve(__dirname, './package/form-render4-vue3/index.js'),
+      name: 'form-render4-vue3',
       fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {

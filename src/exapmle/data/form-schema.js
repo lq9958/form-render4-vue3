@@ -44,6 +44,33 @@ export const SIMPLEFORM = {
         label: 'label',
         value: 'value'
       }
+    },
+    {
+      type: 'select',
+      title: '爱好',
+      field: 'like',
+      value: '',
+      props:{
+        placeholder:'选择爱好'
+      },
+      data:{
+        list:[{
+          label:'唱',
+          value:'song'
+        },
+        {
+          label:'跳',
+          value:'dance'
+        },{
+          label:'rap',
+          value:'rap'
+        },{
+          label:'篮球',
+          value:'basketball'
+        }],
+        label: 'label',
+        value: 'value'
+      }
     }
   ],
   labelWidth: 'auto',

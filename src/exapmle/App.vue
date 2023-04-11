@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="app-title">Vue3-Form-Render</div>
+    <div class="app-title">Form-Render4-Vue3</div>
     <el-tabs v-model="activeName" class="app-tabs" >
       <el-tab-pane label="普通表单" name="simple">
         <simple-form></simple-form>
