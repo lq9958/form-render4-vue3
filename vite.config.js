@@ -14,7 +14,7 @@ export default defineConfig({
   build: {
     outDir: 'lib',
     lib: {
-      entry: path.resolve(__dirname, './package/form-render4-vue3/index.js'),
+      entry: path.resolve(__dirname, './src/package/form-render4-vue3/index.js'),
       name: 'form-render4-vue3',
       fileName: (format) => `index.${format}.js`
     },

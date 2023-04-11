@@ -4,29 +4,31 @@
       <form-render4-vue3
         v-if="showForm"
         :schema="schema"
-        :form-data="formData"
+        :modal="formData"
         :on-change="handleFormDataChange"
       ></form-render4-vue3>
       <el-text v-else class="mx-1" type="danger">JSON 格式有误</el-text>
       <div class="form-data">表单数据：{{ formData }}</div>
     </div>
     <div class="editor-container">
-      <codemirror
-        ref="view"
-        v-model="code"
-        @update:modelValue="handleEditorChange"
-        class="json-editor"
-        :autofocus="true"
-        :indent-with-tab="true"
-        :tab-size="4"
-        :extensions="extensions"
-      />
+      <el-scrollbar>
+        <codemirror
+          ref="view"
+          v-model="code"
+          @update:modelValue="handleEditorChange"
+          class="json-editor"
+          :autofocus="true"
+          :indent-with-tab="true"
+          :tab-size="4"
+          :extensions="extensions"
+        />
+      </el-scrollbar>
     </div>
   </div>
 </template>
 
 <script setup>
-import { reactive, ref, nextTick } from 'vue'
+import { reactive, ref } from 'vue'
 import { Codemirror } from 'vue-codemirror'
 import { json } from '@codemirror/lang-json'
 import { oneDark } from '@codemirror/theme-one-dark'

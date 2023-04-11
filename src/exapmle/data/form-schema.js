@@ -4,8 +4,8 @@ export const SIMPLEFORM = {
       title: '姓名',
       field: 'name',
       value: '',
-      props:{
-        placeholder:'输入姓名'
+      props: {
+        placeholder: '输入姓名'
       }
     },
     {
@@ -15,62 +15,107 @@ export const SIMPLEFORM = {
       value: '',
       props: {
         type: 'number',
-        placeholder:'输入年龄'
+        placeholder: '输入年龄'
       }
     },
     {
-      type: 'select',
-      title: '爱好',
-      field: 'like',
+      type: 'number',
+      title: '工作时长(年)',
+      field: 'experience',
       value: '',
-      props:{
-        placeholder:'选择爱好'
+      props: {
+        step: 0.5
       },
-      data:{
-        list:[{
-          label:'唱',
-          value:'song'
-        },
-        {
-          label:'跳',
-          value:'dance'
-        },{
-          label:'rap',
-          value:'rap'
-        },{
-          label:'篮球',
-          value:'basketball'
-        }],
+    },
+    {
+      type: 'select',
+      title: '现居地',
+      field: 'address',
+      value: '',
+      props: {
+        placeholder: '选择现居地'
+      },
+      data: {
+        list: [{
+            label: '北京',
+            value: 'beijing'
+          },
+          {
+            label: '上海',
+            value: 'shanghai'
+          }, {
+            label: '深圳',
+            value: 'shenzhen'
+          }, {
+            label: '成都',
+            value: 'chengdu'
+          }
+        ],
         label: 'label',
         value: 'value'
       }
     },
     {
-      type: 'select',
-      title: '爱好',
-      field: 'like',
+      type: 'radio',
+      title: '性别',
+      field: 'gender',
       value: '',
-      props:{
-        placeholder:'选择爱好'
-      },
-      data:{
-        list:[{
-          label:'唱',
-          value:'song'
-        },
-        {
-          label:'跳',
-          value:'dance'
-        },{
-          label:'rap',
-          value:'rap'
-        },{
-          label:'篮球',
-          value:'basketball'
-        }],
+      data: {
+        list: [{
+            label: '男',
+            value: 'man'
+          },
+          {
+            label: '女',
+            value: 'woman'
+          }, {
+            label: '男女',
+            value: 'woman&man'
+          }
+        ],
         label: 'label',
         value: 'value'
       }
+    },
+    {
+      type: 'checkbox',
+      title: '爱好',
+      field: 'likes',
+      value: '',
+      data: {
+        list: [{
+            label: '唱',
+            value: 'song'
+          },
+          {
+            label: '跳',
+            value: 'dance'
+          }, {
+            label: 'rap',
+            value: 'rap'
+          }, {
+            label: '篮球',
+            value: 'basketball'
+          }
+        ],
+        label: 'label',
+        value: 'value'
+      }
+    }, {
+      type: 'slider',
+      title: '身高',
+      field: 'height',
+      value: '',
+      props: {
+        min: 100,
+        max: 200
+      }
+    },
+    {
+      type: 'switch',
+      title: '信息公开',
+      field: 'public',
+      value: ''
     }
   ],
   labelWidth: 'auto',
@@ -78,12 +123,12 @@ export const SIMPLEFORM = {
   hideRequiredAsterisk: false,
   requireAsteriskPosition: 'left',
   showMessage: true,
-  disabled: true,
+  disabled: false,
 }
 
 
 export const SIMPLEFORMDATA = {
-  name: '只因',
+  name: 'QQ',
   age: 18,
 
 }
