@@ -42,7 +42,7 @@ const formState = reactive({
   schema: SIMPLEFORM
 })
 
-watch(formState.schema, newVal => {
+watch(formState, newVal => {
   console.log(newVal)
 })
 
