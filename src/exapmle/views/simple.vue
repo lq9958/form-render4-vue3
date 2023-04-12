@@ -3,17 +3,16 @@
     <div class="form-container">
       <form-render4-vue3
         v-if="showForm"
-        :schema="schema"
-        :modal="formData"
+        :schema="formState.schema"
+        :modal="formState.formData"
         :on-change="handleFormDataChange"
       ></form-render4-vue3>
       <el-text v-else class="mx-1" type="danger">JSON 格式有误</el-text>
-      <div class="form-data">表单数据：{{ formData }}</div>
+      <div class="form-data">表单数据：{{ formState.formData }}</div>
     </div>
     <div class="editor-container">
       <el-scrollbar>
         <codemirror
-          ref="view"
           v-model="code"
           @update:modelValue="handleEditorChange"
           class="json-editor"
@@ -28,7 +27,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { Codemirror } from 'vue-codemirror'
 import { json } from '@codemirror/lang-json'
 import { oneDark } from '@codemirror/theme-one-dark'
@@ -38,20 +37,27 @@ const code = ref(JSON.stringify(SIMPLEFORM, null, 4))
 const extensions = [json(), oneDark]
 
 const showForm = ref(true)
-let formData = reactive(SIMPLEFORMDATA)
-let schema = reactive(SIMPLEFORM)
+const formState = reactive({
+  formData: SIMPLEFORMDATA,
+  schema: SIMPLEFORM
+})
 
-const handleEditorChange = (value) => {
+watch(formState.schema, newVal => {
+  console.log(newVal)
+})
+
+const handleEditorChange = value => {
   try {
-    schema = JSON.parse(value)
+    formState.schema = JSON.parse(value)
     showForm.value = true
   } catch (e) {
     console.log(e)
     showForm.value = false
   }
 }
+
 const handleFormDataChange = ({ field, value }) => {
-  formData[field] = value
+  formState.formData[field] = value
 }
 </script>
 
