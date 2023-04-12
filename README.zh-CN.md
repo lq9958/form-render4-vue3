@@ -3,6 +3,8 @@
 > form-render4-vue3是基于vue3+element-plus的表单生成组件，组件包含了日常使用的表单组件，设计源于x-render，意在解决项目日常开发中表单代码的重复书写，提高开发效率。目前该项目还在增加更多的特性。
 
 中文 | [English](./README.md)
+
+[Playground](https://lq9958.github.io/)
 ## 如何使用
 
 ### 安装

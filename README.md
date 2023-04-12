@@ -3,6 +3,8 @@
 > form-render4-vue3 is a form generation component based on vue3+element-plus. The component includes commonly used form components and is designed based on x-render. Its purpose is to solve the problem of repetitive code writing in form development during daily project development, and to improve development efficiency. Currently, the project is still adding more features.
 
 English | [中文](./README.zh-CN.md)
+
+[Playground](https://lq9958.github.io/)
 ## How To Use
 
 ### install
