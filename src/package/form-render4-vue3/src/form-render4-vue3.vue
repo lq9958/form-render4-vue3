@@ -12,10 +12,10 @@
       :show-message="schema.showMessage"
       :scroll-to-error="schema.scrollToError"
     >
-      <el-row v-if="update">
+      <el-row>
         <el-col
-          :span="span(schema.column)"
-          v-for="item in schema.fields"
+          :span="span(props.schema.column)"
+          v-for="item in props.schema.fields"
           :key="item.field"
         >
           <form-item
@@ -43,16 +43,6 @@ const props = defineProps({
 
 
 let schema = props.schema
-
-// TODO: remove use `v-if` to re-rendering component 
-let update = ref(true)
-watch(props, () => {
-  update.value = false
-  schema = props.schema
-  nextTick(() => {
-    update.value = true
-  })
-})
 const formModal = reactive(Utils.mergeSchema({ ...props.modal }))
 const change = props.onChange
 const span = (column) => {
@@ -85,7 +75,8 @@ const clearValidate = () => {
 defineExpose({
   validate,
   resetFields,
-  clearValidate
+  clearValidate,
+  // forceUpdate
 })
 </script>
 
