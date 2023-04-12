@@ -18,11 +18,7 @@
           v-for="item in props.schema.fields"
           :key="item.field"
         >
-          <form-item
-            :schema="item"
-            :form-data="formModal"
-            @on-change="handleChange"
-          ></form-item>
+          <form-item :schema="item" :form-data="formModal" @on-change="handleChange"></form-item>
         </el-col>
       </el-row>
     </el-form>
@@ -30,22 +26,26 @@
 </template>
 
 <script setup>
-import { nextTick, reactive, ref, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import * as Utils from './utils'
 import FormItem from './formItem.vue'
-
 
 const props = defineProps({
   schema: Object,
   modal: Object,
-  onChange: Function,
+  onChange: Function
 })
 
-
-let schema = props.schema
-const formModal = reactive(Utils.mergeSchema({ ...props.modal }))
+let schema = reactive(Utils.mergeSchema({ ...props.schema }))
+watch(
+  () => props.schema,
+  newVal => {
+    schema = Utils.mergeSchema({ ...newVal })
+  }
+)
+const formModal = reactive(props.modal)
 const change = props.onChange
-const span = (column) => {
+const span = column => {
   return column ? 24 / column : 24
 }
 
@@ -55,7 +55,7 @@ const handleChange = async ({ field, value }) => {
 }
 
 const formInstance = ref(null)
-const validate = async (callback) => {
+const validate = async callback => {
   if (!formInstance) return
   await formInstance.value.validate((isValid, errorField) => {
     callback(isValid, errorField)
@@ -75,7 +75,7 @@ const clearValidate = () => {
 defineExpose({
   validate,
   resetFields,
-  clearValidate,
+  clearValidate
   // forceUpdate
 })
 </script>
