@@ -10,7 +10,6 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-lib
 *.local
 
 # Editor directories and files
@@ -23,5 +22,4 @@ lib
 *.njsproj
 *.sln
 *.sw?
-
 package-lock.json

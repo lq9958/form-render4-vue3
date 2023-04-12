@@ -1,31 +1,24 @@
 {
   "name": "form-render4-vue3",
   "author": "lq9958",
-  "version": "0.0.3",
+  "version": "0.0.1",
   "description": "A form render for vue3, base on element-plus. use json schema to write form.",
-  "main":"lib/index.es.js",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
-  "keywords": [
-    "VueFormRender",
-    "Vue3FormRender",
-    "FormRender",
-    "Render",
-    "Form",
-    "Vue3",
-    "Vue",
-    "Json Schema"
-  ],
-  "files": [
-    "lib"
-  ],
   "dependencies": {
+    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/theme-one-dark": "^6.1.1",
+    "@element-plus/icons-vue": "^2.1.0",
+    "codemirror": "^6.0.1",
     "element-plus": "^2.3.2",
-    "vue": "^3.2.47"
+    "form-render4-vue3": "^0.0.3",
+    "normalize.css": "^8.0.1",
+    "vue": "^3.2.47",
+    "vue-codemirror": "^6.1.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
