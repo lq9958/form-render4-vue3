@@ -1,13 +1,18 @@
 # Form-Render4-Vue3
 
-> form-render4-vue3 is a form generation component based on vue3+element-plus. The component includes commonly used form components and is designed based on x-render. Its purpose is to solve the problem of repetitive code writing in form development during daily project development, and to improve development efficiency. Currently, the project is still adding more features.
+> form-render4-vue3 是基于 vue3 + element-plus的表单生成组件，组件包含了日常使用的表单组件，设计源于x-render，意在解决项目日常开发中表单代码的重复书写，提高开发效率。目前该项目还在增加更多的特性。
 
-English | [中文](./README.zh-CN.md)
 
 [Playground](https://lq9958.github.io/)
-## How To Use
 
-### install
+## 拟新增特性
+- ✅ 支持渲染自定义组件
+- ✅ 支持form-item中的嵌套
+- ✅ 支持表单内的数据联动
+
+## 如何使用
+
+### 安装
 
 ```
 npm install form-render4-vue3 --save
@@ -31,10 +36,10 @@ app.mount('#app')
 
 ```vue
 <template>
-	<!-- Your component -->
+	<!-- 你的自定义组件 -->
 	<div>
 		<form-render4-vue3 :schema="schema" :modal="formData" :on-change="handleFormDataChange"/>        
-    </div>
+  </div>
 </template>
 
 <script setup>
@@ -177,32 +182,32 @@ import { reactive } from 'vue'
 
 ```
 
-## Schema field description
+## Schema 字段描述
 
-| Field Name              | Type   | Description                                                  | Required |
+| 字段名称              | 类型   | Description                                                  | 是否必须 |
 | ----------------------- | ------ | ------------------------------------------------------------ | -------- |
-| fields                  | Array  | you form item                                                | Yes      |
-| rules                   | Object | reference https://element-plus.org/zh-CN/component/form.html#form-attributes | No       |
-| labelWidth              | -      | reference https://element-plus.org/zh-CN/component/form.html#form-attributes | No       |
-| labelPosition           | -      | reference https://element-plus.org/zh-CN/component/form.html#form-attributes | No       |
-| hideRequiredAsterisk    | -      | reference https://element-plus.org/zh-CN/component/form.html#form-attributes | No       |
-| requireAsteriskPosition | -      | reference https://element-plus.org/zh-CN/component/form.html#form-attributes | No       |
-| showMessage             | -      | reference https://element-plus.org/zh-CN/component/form.html#form-attributes | No       |
+| fields                  | Array  | 生成表单项的数组                                                | Yes      |
+| rules                   | Object | 参考 https://element-plus.org/zh-CN/component/form.html#form-attributes | No       |
+| labelWidth              | -      | 参考 https://element-plus.org/zh-CN/component/form.html#form-attributes | No       |
+| labelPosition           | -      | 参考 https://element-plus.org/zh-CN/component/form.html#form-attributes | No       |
+| hideRequiredAsterisk    | -      | 参考 https://element-plus.org/zh-CN/component/form.html#form-attributes | No       |
+| requireAsteriskPosition | -      | 参考 https://element-plus.org/zh-CN/component/form.html#form-attributes | No       |
+| showMessage             | -      | 参考 https://element-plus.org/zh-CN/component/form.html#form-attributes | No       |
 
-### fields description
+### fields 字段描述
 
-| Field Name | Type   | Description                                                  | Required |
+| 字段名称 | 类型   | Description                                                  | 是否必须 |
 | ---------- | ------ | ------------------------------------------------------------ | -------- |
-| type       | String | form item component type                                     | Yes      |
-| title      | String | form data title                                              | Yes      |
-| field      | String | form data field                                              | Yes      |
-| value      | any    | form data value                                              | No       |
-| props      | Object | corresponding to element-plus compoinent props               | No       |
-| data       | Object | if you use select or checkbox component , you must add this field | No       |
+| type       | String | 指定生成对应element-plus的组件，对应关系见下表 type                                     | Yes      |
+| title      | String | 表单项的名称                                              | Yes      |
+| field      | String | 表单项字段                                              | Yes      |
+| value      | any    | 该表表单项的值                                              | No       |
+| props      | Object | 生成最终组件的props项，对应element-plus组件的props              | No       |
+| data       | Object | 如果是生成下拉组件、多选框、单选时，该字段是必须指定的，用于生成选项数据 | No       |
 
-## Supported Components (field type)
+## 当前支持的组件
 
-| type       | element-plus component |
+| type       | 对应的element-plus组件名 |
 | ---------- | ---------------------- |
 | input      | el-input               |
 | number     | el-input-number        |
@@ -211,5 +216,5 @@ import { reactive } from 'vue'
 | switch     | el-switch              |
 | slider     | el-slider              |
 | color      | el-color-picker        |
-| developing | ...                    |
+| 拼命开发中  | ...                    |
 
